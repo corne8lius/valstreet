@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your account
+{% endblock %}
+
+{% block main %}
+<!-- if we come from a successful transaction, the index page will say that the transaction was sucessful -->
+    {% if x == 1: %}
+        <div class="alert alert-primary" role="alert">
+          Transaction successful!
+        </div>
+    {% elif x == 2: %}
+        <div class="alert alert-success" role="alert">
+            Sold!
+        </div>
+    {% elif x == 3: %}
+<!-- when logging in, the index page will say hello -->
+        <div class="alert alert-warning" role="alert">
+          Welcome {{ username }}!
+        </div>
+    {% endif %}
+
+<!-- the index page will have a table over all the stocks you won, with name, symbol, avg price of purchase per stock,
+     current price per stock, total price in stock, profit in percent and profit in cash -->
+    <h1>Your stocks</h1>
+    <table class="table table-stripend">
+        <thead>
+            <th>company</th>
+            <th>stock</th>
+            <th>shares</th>
+            <th>avg buy</th>
+            <th>price/share</th>
+            <th>total in stock</th>
+            <th>percent</th>
+            <th>profit</th>
+        </thead>
+<!-- for loop to put out the information for each stock -->
+        <tbody>
+        {% for row in listx %}
+            <tr>
+                <th scope="row">{{ row[0] }}</th>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+<!-- if statement to change colour on profit in terms of if you´ve made or lost money on the stock. red if lost, green if made -->
+                {% if row[6] < 0 : %}
+                    <td style="color: red">{{ row[6] }}%</td>
+                    <td style="color: red">{{ row[7] }}</td>
+                {% else %}
+                    <td style="color: green">+{{ row[6] }}%</td>
+                    <td style="color: green"> +{{ row[7] }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<!-- index page also shows your available cash and your total cash, which is available cash and cash in stocks.
+     on top of that it will show how much money you´ve made overall in percent and in cash-->
+    <h1>Your balance: {{ cash }}</h1>
+    <h1>Your total : {{ total }}</h1>
+<!-- again we have an if statement to change color on the profit depending whether you´ve made or lost money overall. -->
+    {% if profit < 0: %}
+        <h1><span >profit in percent: </span><span style="color:red">{{ profit }}%</span></h1>
+        <h1><span >total profit: </span><span style="color:red">+{{ made }}</span></h1></h1>
+    {% else %}
+        <h1><span >profit in percent: </span><span style="color:green">+{{ profit }}%</span></h1>
+        <h1><span >total profit: </span><span style="color:green">+{{ made }}</span></h1></h1>
+    {% endif %}
+
+{% endblock %}

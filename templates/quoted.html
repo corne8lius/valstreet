@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    stock
+{% endblock %}
+
+{% block main %}
+<!-- shows top 10 stocks that match the users search -->
+    <table class="table table-stripend">
+        <thead>
+            <th>stock</th>
+            <th>symbol</th>
+            <th>price</th>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.symbol }}</td>
+                    <td>price: {{ stock.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<!-- button back to search -->
+    <a href='/quote'><button style="margin-bottom:15px;" class="btn btn-primary">Back to search</button></a>
+{% endblock %}

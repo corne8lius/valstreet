@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    cash
+{% endblock %}
+
+{% block main %}
+<!-- Page of challenges -->
+    <h1>Challenges</h1>
+    <h2>Complete a challenge and earn a reward</h2>
+    <h5>Each challenge can only be completed once</h5>
+<!-- table of challenge name and status -->
+    <table class="table table-stripend">
+        <thead>
+            <th> challenge</th>
+            <th> status</th>
+        </thead>
+<!-- each challenge is displayed. the status is green and says completed if it is completed and red and says not completed if it is not completed -->
+        <tbody>
+            <tr>
+                <td>Complete 1 transactions and earn $1000</td>
+                {% if chal[0] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Complete 10 transactions and earn $1000</td>
+                {% if chal[1] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+                    <tr>
+                <td>complete 30 transactions and earn $1000</td>
+                {% if chal[2] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Complete 100 transactions and earn $2000</td>
+                {% if chal[3] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>If you earn a spot on the top 10 lederboard you´ll receive $1000</td>
+                {% if chal[4] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>If you earn a spot on the top 3 of the leaderboard you´ll receive $2000</td>
+                {% if chal[5] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>If you earn a spot as number 1 on the leaderboard you´ll receive $3000</td>
+                {% if chal[6] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Earch a total profit of 10% or higher and receive $2000</td>
+                {% if chal[7] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Earch a total profit of 25% or higher and receive $2000</td>
+                {% if chal[9] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Earch a total profit of 50% or higher and receive $5000</td>
+                {% if chal[10] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Earch a total profit of 100% or higher and receive $10000</td>
+                {% if chal[11] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Bad start? if you go below -20% in profit, you´ll receive $2000</td>
+                {% if chal[8] != 0: %}
+                    <td style="color:green">Completed</td>
+                {% else: %}
+                    <td style="color:red">Not completed</td>
+                {% endif %}
+            </tr>
+
+        </tbody>
+    </table>
+{% endblock %}

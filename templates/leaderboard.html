@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    leaderboard
+{% endblock %}
+
+{% block main %}
+<!-- leaderboard page shows the users ranking and profit, plus the top 10 leaderboard -->
+        <h3 style="margin-right:750px;">your ranking</h3>
+<!-- shows users rank and profit in percent and dollars. in red if negative in green if positive. -->
+        <table class="table table-stripend">
+            <thead>
+                <th>rank</th>
+                <th>profit $</th>
+                <th>profit %</th>
+            </thead>
+            <tbody>
+                <td>{{ user[0] }}</td>
+                    {% if user[3] < 0 : %}
+                        <td style="color: red">${{ user[2] }}</td>
+                        <td style="color: red">{{ user[3] }}%</td>
+                    {% else %}
+                        <td style="color: green">+${{ user[2] }}</td>
+                        <td style="color: green">+{{ user[3] }}%</td>
+                    {% endif %}
+            </tbody>
+        </table>
+
+        <a href='http://www.3683b9ee-b9dd-414e-a791-5c3fa8be7f93-ide.cs50.xyz/leaderboard2'><button class="btn btn-primary">show all</button></a>
+
+        <h1 style="margin-top:20px;">LEADERBOARD TOP 10</h1>
+        <h5>ranked by profit in %</h5>
+        <table class="table table-stripend">
+            <thead>
+                <th>rank</th>
+                <th>user</th>
+                <th>profit $</th>
+                <th>profit %</th>
+            </thead>
+    <!-- for loop to put out the information for each stock -->
+            {% for row in leaders %}
+                <tbody>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+
+    <!-- if statement to change colour on profit in terms of if you´ve made or lost money on the stock. red if lost, green if made -->
+                    {% if row[3] < 0 : %}
+                        <td style="color: red">${{ row[2] }}</td>
+                        <td style="color: red">{{ row[3] }}%</td>
+                    {% else %}
+                        <td style="color: green">+${{ row[2] }}</td>
+                        <td style="color: green">+{{ row[3] }}%</td>
+                    {% endif %}
+                </tbody>
+            {% endfor %}
+        </table>
+
+{% endblock %}

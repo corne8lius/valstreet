@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search for stock
+{% endblock %}
+
+
+{% block main %}
+<!-- display alert message if alert variable is given-->
+	{% if x == 1: %}
+        <div class="alert alert-danger" role="alert">
+            Couldn´t find the stock, try again
+        </div>
+    {% elif x == 2: %}
+        <div class="alert alert-danger" role="alert">
+            you most provide a stock
+        </div>
+
+    {% endif %}
+
+<!-- form to search for stock -->
+    <form action="/quote" method="post">
+        <div class = "form-group">
+            <input class="form-control" name="symbol" placeholder="stock or symbol" type="text">
+        </div>
+        <div class="form-group">
+        	<button class="btn btn-primary form-control" type="submit">search</button>
+        </div>
+    </form>
+
+<!-- display all the stocks in our database-->
+	<h1>All stocks found by users:</h1>
+	<a href='http://www.3683b9ee-b9dd-414e-a791-5c3fa8be7f93-ide.cs50.xyz/quote'><button style="margin-bottom:15px;" class="btn btn-primary">show only top 10</button></a>
+	<table class="table table-stripend">
+	    <thead>
+			<tr class="row100 head">
+				<th class="cell100 column1">Stock</th>
+				<th class="cell100 column2">symbol</th>
+				<th class="cell100 column3">price</th>
+				<th class="cell100 column4">last updated</th>
+			</tr>
+		</thead>
+		<tbody>
+		    {% for row in history %}
+		    	<tr class="row100 body">
+				    <td class="cell100 column1">{{row[0]}}</td>
+					<td class="cell100 column2">{{row[1]}}</td>
+					<td class="cell100 column3">{{row[2]}}</td>
+					<td class="cell100 column4">{{row[3]}}</td>
+		    {% endfor %}
+		</tbody>
+		</tbody>
+	</table>
+{% endblock %}

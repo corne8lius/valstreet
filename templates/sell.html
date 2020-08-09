@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<!-- if sell is given an alert variable, display alert message -->
+    {% if x == 1: %}
+        <div class="alert alert-danger" role="alert">
+            Must provide a positive number of shares to sell
+        </div>
+    {% elif x == 2: %}
+        <div class="alert alert-danger" role="alert">
+            Must provide a company to sell
+        </div>
+    {% elif x == 3: %}
+        <div class="alert alert-danger" role="alert">
+            You don´t own that stock, try again
+        </div>
+    {% elif x == 4: %}
+        <div class="alert alert-danger" role="alert">
+            You don´t own that many shares of the stock
+        </div>
+    {% endif %}
+<!-- form to sell -->
+    <form action="/sell" method="post">
+        <div class="form-group">
+<!-- select drag down that shows all the stocks the user owns -->
+            <select id="symbol"class="form-control" name="symbol">
+                <option value="symbol1" name ="symbol1" disabled selected value>Symbol</option>
+                {% for row in listx %}
+                    <option value= "{{ row[1]}}" name="{{ row[1] }}"> {{row[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+<!-- form to fill in the number of shares the user want to sell -->
+        <div class="form-group">
+            <input id="shares1" class="form-control" name="shares1" placeholder="number of shares" type="text" autocomplete="off">
+        </div>
+<!-- sell button -->
+        <button style="margin-bottom:15px;" id="submit" class="btn btn-primary" type="submit" disabled>Sell</button>
+    </form>
+<!-- script to hide the sell button unless the user has typed in the number of shares -->
+    <script>
+        document.querySelector("#shares1").onkeyup = function() {
+            if (document.querySelector("#shares1").value === "") {
+                document.querySelector("#submit").disabled = true;
+            }
+            else {
+                document.querySelector("#submit").disabled = false;
+            }
+        }
+    </script>
+<!-- display the stocks the user owns, to make it easier to sell -->
+    <h3>Your stocks</h3>
+    <table class="table table-stripend">
+        <thead>
+            <tr>
+                <th>stock</th>
+                <th>shares</th>
+                <th>price/share</th>
+                <th>total price in stock</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in listx %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

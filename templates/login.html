@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<!-- says welcome to VAL street -->
+    <h1>Welcome to</h1>
+
+    <div contenteditable>
+        <h1>
+            <span style="color:blue">V</span><span style="color:red">A</span><span style="color:yellow">L</span><span style="color:green">$treet</span>
+        </h1>
+    </div>
+    <h3>Virtual Analytical Lab</h3>
+<!-- if alert number is given, the webpage shows the alert message. -->
+    {% if x == 1: %}
+        <div class="alert alert-danger" role="alert">
+            Must provide username
+        </div>
+    {% elif x == 2: %}
+        <div class="alert alert-danger" role="alert">
+            Must provide password
+        </div>
+    {% elif x == 3: %}
+        <div class="alert alert-danger" role="alert">
+            Invalid username and/or password
+            <br>did you use upper case in your username?
+        </div>
+    {% elif x == 4: %}
+    <div class="alert alert-primary" role="alert">
+          Successful registration! You can now proceed to log in.
+    </div>
+    {% endif %}
+
+<!-- login form -->
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+{% endblock %}

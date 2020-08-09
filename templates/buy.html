@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+<!-- depending on x, display different alert messages -->
+    {% if x == 1: %}
+        <div class="alert alert-danger" role="alert">
+            You must provide a stock to buy
+        </div>
+    {% elif x == 2: %}
+        <div class="alert alert-danger" role="alert">
+            You must provide a positive number of shares to buy
+        </div>
+    {% elif x == 3: %}
+        <div class="alert alert-danger" role="alert">
+            Couldn´t find the stock, please try again
+        </div>
+    {% elif x == 4: %}
+        <div class="alert alert-danger" role="alert">
+            Sorry, you don´t have enough cash for this transaction, please try again
+        </div>
+    {% endif %}
+
+<!-- a form -->
+    <form action="/buy" method="post">
+<!-- a box to type in name of stock in symbols -->
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="stock" placeholder="stock name" type="text">
+        </div>
+<!-- a box to type in the amount of shares to buy -->
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="shares" placeholder="number of shares" type="text">
+        </div>
+<!-- submit button -->
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+
+<!-- buy page will show the amount of available cash for convinient sake when shopping stocks -->
+    <h1>available money: {{ cash }}</h1>
+
+<!-- the buy page will show the history of already searched stocks, with stock name, stock symbol, stock price and when it was updated -->
+    <table class="table table-stripend">
+        <thead></thead>
+            <tr>
+                <th>stock</th>
+                <th>symbol</th>
+                <th>price</th>
+                <th>last updated</th>
+            </tr>
+        </thead>
+        <tbody>
+<!-- for loop that gets name, symbol, price and time updated for each stock searched -->
+        {% for row in history %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

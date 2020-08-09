@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your history
+{% endblock %}
+
+{% block main %}
+<!-- very simple page that display every transaction the user have made. -->
+<!-- it shows which stock, how many shares he bought or sold(sold is negative number), price/share, total price of transaction and when the transaction was made -->
+    <h1>Your transaction history</h1>
+    <h3>all your transactions</h3>
+    <a href='http://www.3683b9ee-b9dd-414e-a791-5c3fa8be7f93-ide.cs50.xyz/history'><button style="margin-bottom:10px;" class="btn btn-primary">show latest transactions</button></a>
+    <table class="table table-stripend">
+        <thead>
+            <tr>
+                <td>stock</td>
+                <td>buy/sell</td>
+                <td>price/share</td>
+                <td>total price</td>
+                <td>time of transactions</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in transactions %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
